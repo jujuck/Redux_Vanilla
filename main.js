@@ -20,3 +20,14 @@ const initialState = {
  *   - Refresh display when state is changed
  */
 const taskList = document.getElementById('task-list');
+
+const render = () => {
+  const listItems = initialState.tasks.map(task => {
+    const style = task.done ? 'text-decoration: line-through' : '';
+    return `<li style='${style}'>${task.title}</li>`
+  })
+
+  taskList.innerHTML = listItems.join('');
+}
+
+render();
