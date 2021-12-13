@@ -62,6 +62,10 @@ filterSelector.addEventListener(
 );
 
 const render = () => {
+
+  const { tasks, filter } = store.getState();
+  console.log(filter);
+
   const listItems = initialState.tasks.map(task => {
     const style = task.done ? 'text-decoration: line-through' : '';
     return `<li style='${style}'>${task.title}</li>`
