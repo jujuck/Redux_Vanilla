@@ -43,6 +43,13 @@ const reducer = (state = initialState, action) => {
 };
 
 /**
+ * Get createStore from Redux and use it
+ * to create the store
+ */
+const { createStore } = Redux;
+const store = createStore(reducer);
+
+/**
  * User Interface
  *   - Dispatch actions on user-triggered events
  *   - Refresh display when state is changed
