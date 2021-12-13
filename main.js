@@ -15,9 +15,9 @@ const initialState = {
 };
 
 /**
-     * Reducer
-     *   - first we handle the CHANGE_FILTER action
-     */
+ * Reducer
+ *   - first we handle the CHANGE_FILTER action
+ */
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGE_FILTER':
@@ -92,3 +92,5 @@ const render = () => {
 }
 
 render();
+
+store.subscribe(render);
