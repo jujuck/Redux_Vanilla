@@ -15,11 +15,44 @@ const initialState = {
 };
 
 /**
+     * Reducer
+     *   - first we handle the CHANGE_FILTER action
+     */
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'CHANGE_FILTER':
+      return {
+        ...state,
+        filter: action.filter
+      };
+
+    case 'TOGGLE_DONE':
+      return {
+        ...state,
+        tasks: state.tasks.map(task =>
+          task.id === action.taskId
+            ? {
+              ...task, done: !task.done
+            }
+            : { ...task }
+        )
+      };
+    default:
+      return state;
+  }
+};
+
+/**
  * User Interface
  *   - Dispatch actions on user-triggered events
  *   - Refresh display when state is changed
  */
 const taskList = document.getElementById('task-list');
+const filterSelector = document.getElementById('filter-selector');
+
+filterSelector.addEventListener(
+  'change', (event) => console.log(event.target.value)
+);
 
 const render = () => {
   const listItems = initialState.tasks.map(task => {
