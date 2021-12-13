@@ -58,7 +58,10 @@ const taskList = document.getElementById('task-list');
 const filterSelector = document.getElementById('filter-selector');
 
 filterSelector.addEventListener(
-  'change', (event) => console.log(event.target.value)
+  'change', event => store.dispatch({
+    type: 'CHANGE_FILTER',
+    filter: event.target.value
+  })
 );
 
 const render = () => {
