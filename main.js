@@ -89,7 +89,10 @@ const render = () => {
     const taskId = tasks[i].id;
     taskItems[i].addEventListener(
       'click',
-      () => console.log(`click on ${taskId}`)
+      event => store.dispatch({
+        type: 'TOGGLE_DONE',
+        taskId
+      })
     );
   }
 }
