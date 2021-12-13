@@ -13,3 +13,10 @@ const initialState = {
     { id: 3, title: 'Learn Redux', done: false }
   ]
 };
+
+/**
+ * User Interface
+ *   - Dispatch actions on user-triggered events
+ *   - Refresh display when state is changed
+ */
+const taskList = document.getElementById('task-list');
