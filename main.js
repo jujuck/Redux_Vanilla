@@ -28,6 +28,15 @@ const render = () => {
   })
 
   taskList.innerHTML = listItems.join('');
+  const taskItems = taskList.getElementsByTagName('li');
+  for (let i = 0; i < taskItems.length; i++) {
+    // Get id of the task that matches the task item
+    const taskId = initialState.tasks[i].id;
+    taskItems[i].addEventListener(
+      'click',
+      () => console.log(`click on ${taskId}`)
+    );
+  }
 }
 
 render();
