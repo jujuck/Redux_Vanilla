@@ -64,9 +64,17 @@ filterSelector.addEventListener(
 const render = () => {
 
   const { tasks, filter } = store.getState();
-  console.log(filter);
 
-  const listItems = initialState.tasks.map(task => {
+  // Filter tasks according to filter value
+  const filteredTasks = tasks.filter(
+    task => (
+      filter === 'SHOW_ALL'
+      || (filter === 'SHOW_TODO' && !task.done)
+      || (filter === 'SHOW_DONE' && task.done)
+    )
+  );
+
+  const listItems = filteredTasks.map(task => {
     const style = task.done ? 'text-decoration: line-through' : '';
     return `<li style='${style}'>${task.title}</li>`
   })
@@ -75,7 +83,7 @@ const render = () => {
   const taskItems = taskList.getElementsByTagName('li');
   for (let i = 0; i < taskItems.length; i++) {
     // Get id of the task that matches the task item
-    const taskId = initialState.tasks[i].id;
+    const taskId = tasks[i].id;
     taskItems[i].addEventListener(
       'click',
       () => console.log(`click on ${taskId}`)
