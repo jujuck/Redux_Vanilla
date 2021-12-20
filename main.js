@@ -14,11 +14,14 @@ const initialState = {
   ]
 };
 
+let id = 3;
+
 /**
  * Reducer
  *   - first we handle the CHANGE_FILTER action
  */
 const reducer = (state = initialState, action) => {
+  console.log("I'm IN")
   switch (action.type) {
     case 'CHANGE_FILTER':
       return {
@@ -37,6 +40,16 @@ const reducer = (state = initialState, action) => {
             : { ...task }
         )
       };
+    case 'ADD_TASK':
+      console.log("Adding task");
+      console.log(state)
+      console.log(action)
+      id++;
+      const newState = {
+        filter: state.filter,
+        tasks: [...state.tasks, { id, title: action.value, done: false }]
+      }
+      return newState;
     default:
       return state;
   }
@@ -100,3 +113,12 @@ const render = () => {
 render();
 
 store.subscribe(render);
+
+const form = document.getElementById('addTask');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  store.dispatch({
+    type: 'ADD_TASK',
+    value: document.getElementById('title').value
+  })
+})
